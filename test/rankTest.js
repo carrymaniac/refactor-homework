@@ -1,10 +1,193 @@
 const rankTest = require('ava');
+const {voyageRisk, hasChina, captainHistoryRisk, voyageProfitFactor, rating} = require('../src/rank')
 
-rankTest('foo', t => {
-  t.pass();
-});
+rankTest('case 1, test for hasChina should be true', t => {
+    let china = hasChina(history);
+    t.is(true, china)
+})
 
-rankTest('bar', async t => {
-  const bar = Promise.resolve('bar');
-  t.is(await bar, 'bar');
-});
+rankTest('case 2, test for hasChina should be false', t => {
+    const history = [
+        {
+            zone: 'east-indies',
+            profit: 5,
+        }, {
+            zone: 'west-indies',
+            profit: 15,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+    ];
+    let china = hasChina(history);
+    t.is(false, china)
+})
+
+rankTest('case 3,test for captainHistoryRisk should be 6', t=>{
+    let result = captainHistoryRisk(voyage, history);
+    t.is(6, result)
+})
+
+rankTest('case 4,test for captainHistoryRisk should be 2', t=>{
+    const history = [
+        {
+            zone: 'east-indies',
+            profit: 5,
+        }, {
+            zone: 'west-indies',
+            profit: 15,
+        }, {
+            zone: 'china',
+            profit: -2,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'west-brains',
+            profit: 9,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'east-brains',
+            profit: 17,
+        }
+    ];
+    let result = captainHistoryRisk(voyage, history);
+    t.is(2, result)
+})
+
+rankTest('case 5,test for voyageProfitFactor should be 6', t=>{
+    const voyage = {
+        zone: 'china',
+        length: 12,
+    };
+    let result = voyageProfitFactor(voyage, history);
+    t.is(6, result)
+})
+
+rankTest('case 6,test for voyageProfitFactor should be 7', t=>{
+    const voyage = {
+        zone: 'china',
+        length: 13,
+    };
+    let result = voyageProfitFactor(voyage, history);
+    t.is(7, result)
+})
+
+rankTest('case 7,test for voyageProfitFactor should be 6', t=>{
+    const voyage = {
+        zone: 'china',
+        length: 19,
+    };
+    let result = voyageProfitFactor(voyage, history);
+    t.is(6, result)
+})
+
+rankTest('case 8,test for voyageProfitFactor should be 7', t=>{
+    const voyage = {
+        zone: 'china',
+        length: 19,
+    };
+    const history = [
+        {
+            zone: 'east-indies',
+            profit: 5,
+        }, {
+            zone: 'west-indies',
+            profit: 15,
+        }, {
+            zone: 'china',
+            profit: -2,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'east-indies',
+            profit: 5,
+        }, {
+            zone: 'west-indies',
+            profit: 15,
+        }, {
+            zone: 'china',
+            profit: -2,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'east-indies',
+            profit: 5,
+        }, {
+            zone: 'west-indies',
+            profit: 15,
+        }, {
+            zone: 'china',
+            profit: -2,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'east-indies',
+            profit: 5,
+        }, {
+            zone: 'west-indies',
+            profit: 15,
+        }, {
+            zone: 'china',
+            profit: -2,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'east-indies',
+            profit: 5,
+        }, {
+            zone: 'west-indies',
+            profit: 15,
+        }, {
+            zone: 'china',
+            profit: -2,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+    ];
+    let result = voyageProfitFactor(voyage, history);
+    t.is(7, result)
+})
+
+
+const history = [
+    {
+        zone: 'east-indies',
+        profit: 5,
+    }, {
+        zone: 'west-indies',
+        profit: 15,
+    }, {
+        zone: 'china',
+        profit: -2,
+    },
+    {
+        zone: 'west-africa',
+        profit: 7,
+    },
+];
+const voyage = {
+    zone: 'west-indies',
+    length: 10,
+};
