@@ -45,11 +45,8 @@ const calculateProfitWhenHistoryHaveChina = (result, history, voyage) => {
 }
 
 function calculateProfitWhenHistoryNotHaveChina(result, history, voyage) {
-    if (history.length > 8) {
+    if (history.length > 8 && history.length <=14) {
         result += 1;
-    }
-    if (voyage.length > 14) {
-        result -= 1;
     }
     return result;
 }
