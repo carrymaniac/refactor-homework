@@ -1,18 +1,17 @@
-function voyageRisk (voyage) {
-  let result = 1;
-  if (voyage.length > 4) {
-    result += 2;
-  }
-  if (voyage.length > 8) {
-    result += voyage.length - 8;
-  }
-  if ([
-    'china',
-    'east-indies',
-  ].includes(voyage.zone)) {
-    result += 4;
-  }
-  return Math.max(result, 0);
+function voyageRisk(voyage) {
+    let result = 1;
+    if(voyage.length > 8){
+        result += voyage.length - 6;
+    }else if(voyage.length > 4){
+        result += 2;
+    }
+    if ([
+        'china',
+        'east-indies',
+    ].includes(voyage.zone)) {
+        result += 4;
+    }
+    return result;
 }
 
 function hasChina (history) {
@@ -75,27 +74,28 @@ function rating (voyage, history) {
 }
 
 module.exports = {
+    voyageRisk, hasChina, captainHistoryRisk, voyageProfitFactor, rating
 };
 
 const voyage = {
-  zone: 'west-indies',
-  length: 10,
+    zone: 'west-indies',
+    length: 10,
 };
 const history = [
-  {
-    zone: 'east-indies',
-    profit: 5,
-  },{
-    zone: 'west-indies',
-    profit: 15,
-  },{
-    zone: 'china',
-    profit: -2,
-  },
-  {
-    zone: 'west-africa',
-    profit: 7,
-  },
+    {
+        zone: 'east-indies',
+        profit: 5,
+    }, {
+        zone: 'west-indies',
+        profit: 15,
+    }, {
+        zone: 'china',
+        profit: -2,
+    },
+    {
+        zone: 'west-africa',
+        profit: 7,
+    },
 ];
 const myRating = rating(voyage, history);
 console.log(`myRating: ${myRating}`);

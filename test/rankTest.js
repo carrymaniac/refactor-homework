@@ -179,7 +179,7 @@ rankTest('case 9,test for voyageRisk should be 5', t=>{
     t.is(5, result)
 })
 
-rankTest('case 9,test for voyageRisk should be 7', t=>{
+rankTest('case 10,test for voyageRisk should be 7', t=>{
     const voyage = {
         zone: 'china',
         length: 8,
@@ -188,7 +188,7 @@ rankTest('case 9,test for voyageRisk should be 7', t=>{
     t.is(7, result)
 })
 
-rankTest('case 9,test for voyageRisk should be 8', t=>{
+rankTest('case 11,test for voyageRisk should be 8', t=>{
     const voyage = {
         zone: 'china',
         length: 9,
@@ -197,7 +197,7 @@ rankTest('case 9,test for voyageRisk should be 8', t=>{
     t.is(8, result)
 })
 
-rankTest('case 9,test for voyageRisk should be 8', t=>{
+rankTest('case 12,test for voyageRisk should be 8', t=>{
     const voyage = {
         zone: 'west-africa',
         length: 9,
