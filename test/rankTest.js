@@ -170,6 +170,41 @@ rankTest('case 8,test for voyageProfitFactor should be 7', t=>{
     t.is(7, result)
 })
 
+rankTest('case 9,test for voyageRisk should be 5', t=>{
+    const voyage = {
+        zone: 'china',
+        length: 4,
+    };
+    let result = voyageRisk(voyage);
+    t.is(5, result)
+})
+
+rankTest('case 9,test for voyageRisk should be 7', t=>{
+    const voyage = {
+        zone: 'china',
+        length: 8,
+    };
+    let result = voyageRisk(voyage);
+    t.is(7, result)
+})
+
+rankTest('case 9,test for voyageRisk should be 8', t=>{
+    const voyage = {
+        zone: 'china',
+        length: 9,
+    };
+    let result = voyageRisk(voyage);
+    t.is(8, result)
+})
+
+rankTest('case 9,test for voyageRisk should be 8', t=>{
+    const voyage = {
+        zone: 'west-africa',
+        length: 9,
+    };
+    let result = voyageRisk(voyage);
+    t.is(4, result)
+})
 
 const history = [
     {
