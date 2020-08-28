@@ -41,7 +41,7 @@ const calculateProfitWhenHistoryHaveChina = (result, history, voyage) => {
     return result;
 }
 
-function calculateProfitWhenHistoryNotHaveChina(result, history, voyage) {
+function calculateProfitWhenHistoryNotHaveChina(result, history) {
     if (history.length > 8 && history.length <=14) {
         result += 1;
     }
@@ -56,20 +56,24 @@ function voyageProfitFactor(voyage, history) {
     if (voyage.zone === 'china' && hasChina(history)) {
         result = calculateProfitWhenHistoryHaveChina(result, history, voyage);
     } else {
-        result = calculateProfitWhenHistoryNotHaveChina(result, history, voyage);
+        result = calculateProfitWhenHistoryNotHaveChina(result, history);
     }
     return result;
+}
+
+function calculateRate(vpf, vr, chr) {
+    if (vpf * 3 > (vr + chr * 2)) {
+        return 'A';
+    } else {
+        return 'B';
+    }
 }
 
 function rating(voyage, history) {
     const vpf = voyageProfitFactor(voyage, history);
     const vr = voyageRisk(voyage);
     const chr = captainHistoryRisk(voyage, history);
-    if (vpf * 3 > (vr + chr * 2)) {
-        return 'A';
-    } else {
-        return 'B';
-    }
+    return calculateRate(vpf, vr, chr);
 }
 
 module.exports = {
