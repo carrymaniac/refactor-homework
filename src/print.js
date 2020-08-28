@@ -12,10 +12,7 @@ function genResult(invoice, outstanding) {
 function printOwing (invoice) {
   let outstanding = 0;
   // calculate outstanding
-  for (const o of invoice.borderSpacing) {
-    outstanding += o.amount;
-  }
-
+  invoice.borderSpacing.forEach(value => {outstanding += value.amount;})
   // record due date
   const today = new Date();
   invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
